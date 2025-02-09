@@ -16,7 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+
+def empty_view(request):
+    return HttpResponse('Aqui nao tem nada')
+
+def home_view(request):
+    return HttpResponse('Home page')
+
+def my_view(request):
+    print('Servidor rodando normalmente.')
+    return HttpResponse('Primeiros passos no django')
+
+def teste(id):
+    return HttpResponse(f'Seu ID é {id}')
 
 urlpatterns = [
+    path('',empty_view),
+    path('home/',home_view),
     path('admin/', admin.site.urls),
+    path('blog/',my_view),
+    # path('teste/<int:id>',teste(id))
 ]
